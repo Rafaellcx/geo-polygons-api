@@ -1,0 +1,33 @@
+version: "3.8"
+services:
+  postgres:
+     build:
+       context: .
+       dockerfile: ./docker/postgres/Dockerfile
+     container_name: geo-polygons-postgres
+     environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_DB: geo-polygons
+     ports:
+        - "5432:5432"
+     networks:
+        - net-geo-polygons
+
+  geo-polygons-back:
+    container_name: geo-polygons-back
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+      args:
+        PHP_VERSION: '8.2.3-fpm-bullseye'
+    ports:
+      - "9000:80" #http
+      - "443:443" #https
+    networks:
+      - net-geo-polygons
+
+
+networks:
+  net-geo-polygons:
+    driver: bridge
