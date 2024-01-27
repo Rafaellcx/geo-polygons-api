@@ -5,6 +5,7 @@ services:
        context: .
        dockerfile: ./docker/postgres/Dockerfile
      container_name: geo-polygons-postgres
+     image: geo-polygons-postgres
      environment:
         POSTGRES_USER: postgres
         POSTGRES_PASSWORD: postgres
@@ -16,6 +17,7 @@ services:
 
   geo-polygons-back:
     container_name: geo-polygons-back
+    image: geo-polygons-back
     build:
       context: .
       dockerfile: ./docker/Dockerfile

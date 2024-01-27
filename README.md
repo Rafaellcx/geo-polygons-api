@@ -61,15 +61,17 @@ After finishing the creation of the containers, we must execute the commands bel
    ```sh 
    docker exec -it  geo-polygons-back php artisan db:seed --class=MunicipalGeometrySeeder
    ```
+   ![](images/municipal_geometry.png)
    ```sh 
    docker exec -it  geo-polygons-back php artisan db:seed --class=StateGeometrySeeder
    ```
+   ![](images/state_geometry.png)
 
-Now we can use the application through the address "http://127.0.0.1:9000/api/documentation"
+Now we can use the application through the address "http://127.0.0.1:9000/request-docs/"
 If you want to run the application later, check if the `geo-polygons-back` container is active
 executing the following command (Remembering that the same can/must be applied to the container
 from the database):
-
+![](images/request-docs.png)
 ```sh
 docker container ls -a
 ```

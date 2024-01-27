@@ -13,14 +13,16 @@ class StateGeometrySeeder extends Seeder
      */
     public function run(): void
     {
-        $sql = "INSERT INTO state_geometry (name, geom)
+        $sql = "INSERT INTO state_geometry (name, geom, created_at, updated_at)
             SELECT
                 CASE
                     WHEN uf = 'SP' THEN 'SÃO PAULO'
                     WHEN uf = 'MG' THEN 'MINAS GERAIS'
                     ELSE uf
                 END AS name,
-                ST_Union(geom) AS geom
+                ST_Union(geom) AS geom,
+                NOW() AS created_at,
+                NOW() AS updated_at
             FROM municipal_geometry
             WHERE uf IN ('SP', 'MG')
             GROUP BY uf";

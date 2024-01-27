@@ -49,7 +49,14 @@ COPY --chown=www-data:www-data geo_files/ ./storage/app/geo_files
 COPY --chown=www-data:www-data .env.example .env
 RUN rm -rf vendor
 RUN composer install --no-interaction
-RUN php artisan key:generate
+#RUN php artisan key:generate
+
+#Automatically generate API documentation for Laravel without writing annotations.
+RUN composer require rakutentech/laravel-request-docs
+RUN php artisan vendor:publish --tag=request-docs-config
+RUN php artisan route:cache
+# Optional publish assets
+RUN php artisan vendor:publish --tag=request-docs-assets
 
 RUN apt-get install nginx -y
 RUN rm -rf /etc/nginx/sites-enabled/* && rm -rf /etc/nginx/sites-available/*
