@@ -57,6 +57,7 @@ After finishing the creation of the containers, we must execute the commands bel
    ```sh 
    docker exec -ti geo-polygons-back php artisan migrate
    ```
+   ![](images/migrate.png)
 2. Used to populate the tables (Required):
    ```sh 
    docker exec -it  geo-polygons-back php artisan db:seed --class=MunicipalGeometrySeeder
